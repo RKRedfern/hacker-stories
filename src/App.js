@@ -56,12 +56,12 @@ const App = () => {
   });
 
   const List = ({ list }) => 
-    list.map(item => <Item key={item.objectId} item={item}/>); 
+    list.map(item => <Item key={item.objectId} item={item} />); 
 
-  const Item = ({ item: { title, author } }) => (
+  const Item = ({ item }) => (
     <div>
-      <span> {title} </span>
-      <span> {author} </span>
+      <span> {item.title} </span>
+      <span> {item.author} </span>
     </div>
   )
 
