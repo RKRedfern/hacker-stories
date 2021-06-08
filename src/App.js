@@ -1,6 +1,8 @@
 //import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-import Search from './Search'
+import Search from './Search';
+import List from './List';
 
 // const title = 'React';
 
@@ -44,32 +46,27 @@ const App = () => {
     }
   ]
 
+  const [searchTerm, setSearchTerm] = React.useState('');
+
   const handleSearch = (e) => {
-    console.log(e.target.value)
+    setSearchTerm(e.target.value)
   }
+
+  const searchedStories = stories.filter(story => {
+    return story.title.toLowerCase().includes(searchTerm.toLowerCase());
+  });
 
   return (
     <div>
       <h1> My Hacker Stories </h1>
       <Search handleSearch={handleSearch}/>
       <hr />
-      <List list={stories}/>
+      <List list={searchedStories}/>
     </div>
   );
 }
 
-const List = props => 
-  props.list.map(function(item){
-    return(
-    <div key={item.objectId}>
-      <br></br>
-      <span>{item.title}</span>
-      <br></br>
-      <span>{item.author}</span>
 
-    </div>
-    );
-});
 
 
 
