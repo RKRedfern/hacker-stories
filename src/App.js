@@ -2,7 +2,6 @@
 import React from 'react';
 import './App.css';
 import Search from './Search';
-import List from './List';
 
 // const title = 'React';
 
@@ -56,10 +55,22 @@ const App = () => {
     return story.title.toLowerCase().includes(searchTerm.toLowerCase());
   });
 
+  const List = ({ list }) => 
+    list.map(item => <Item key={item.objectId} item={item}/>); 
+
+  const Item = ({ item }) => (
+    <div>
+      <span>
+        <a href={item.url}>{item.title}</a>
+      </span>
+      <span>{item.author}</span>
+    </div>
+  )
+
   return (
     <div>
       <h1> My Hacker Stories </h1>
-      <Search handleSearch={handleSearch}/>
+      <Search search={searchTerm} onSearch={handleSearch}/>
       <hr />
       <List list={searchedStories}/>
     </div>
